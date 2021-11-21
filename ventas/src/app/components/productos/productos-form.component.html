@@ -1,0 +1,40 @@
+<div class="card text-dark bg-light mb-3">
+    <div class="card-header">{{titulo}}</div>
+    <div class="card-body">
+        <button class="btn btn-secondary my-2" routerLink="/productos">volver</button>
+        <form>
+            <div class="form-group">
+                <label for="nombre_producto">Nombre</label>
+                <input type="text"name="nombre_producto" class="form-control" id="nombre_producto"
+                [(ngModel)]="producto.nombre_producto">
+                <div class="alert alert-danger" *ngIf="error && error.nombre_producto">
+                    {{error.nombre_producto}}
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="valor_unitario">Valor Unitario</label>
+                <input type="number"name="valor_unitario" class="form-control" id="valor_unitario"
+                [(ngModel)]="producto.valor_unitario">
+            </div>
+            <div class="form-group">
+                <label for="descripcion">Descripcion</label>
+                <input type="text"name="descripcion" class="form-control" id="descripcion"
+                [(ngModel)]="producto.descripcion">
+                <div class="alert alert-danger" *ngIf="error && error.descripcion">
+                    {{error.descripcion}}
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="ganancia">Ganancia</label>
+                <input type="number"name="ganancia" class="form-control" id="ganancia"
+                [(ngModel)]="producto.ganancia">
+                <div class="alert alert-danger" *ngIf="error && error.ganancia">
+                    {{error.ganancia}}
+                </div>
+            </div>
+            <div class="form-group">
+                <button type="button" class="btn btn-primary my-2" (click)="producto.id? editar(): crear()">{{producto.id?'Editar':'Crear'}}</button>
+            </div>
+        </form>
+    </div>
+</div>

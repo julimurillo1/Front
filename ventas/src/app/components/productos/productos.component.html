@@ -1,0 +1,41 @@
+<div class="card text-dark bg-light mb-3">
+    <div class="card-header">{{titulo}}</div>
+    <div class="card-body">
+        <button class="btn btn-primary my-2" routerLink="/productos/form">crear</button>
+        <div class="alert alert-info" *ngIf="productos?.length==0">
+            No hay Productos en el sistema.
+        </div>
+        <table class="table table-hover table-striped" *ngIf="productos?.length>0">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Nombre</th>
+                    <th>Valor</th>
+                    <th>Descripcion</th>
+                    <th>Ganancia Por Venta</th>
+                    <th>Editar</th>
+                    <th>Eliminar</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let producto of productos">
+                    <td>{{producto.id}}</td>
+                    <td>{{producto.nombre_producto}}</td>
+                    <td>{{producto.valor_unitario}}</td>
+                    <td>{{producto.descripcion}}</td>
+                    <td>{{producto.ganancia}}</td>
+                    <td><button class="btn btn-primary btn-sm"
+                            [routerLink]="['/productos/form', producto.id]">editar</button></td>
+                    <td><button class="btn btn-primary btn-sm" (click)="eliminar(producto)">eliminar</button></td>
+                </tr>
+            </tbody>
+        </table>
+        <mat-paginator [length]="totalRegistros"
+                [pageSize]="totalPorPagina"
+                [pageIndex]="paginaActual"
+                [pageSizeOptions]="pageSizeOptions"
+                (page)="paginar($event)"
+                showFirstLastButtons class="float-left mx-2">
+        </mat-paginator>
+    </div>
+</div>
